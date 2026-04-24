@@ -429,7 +429,7 @@ function statsTable(gameList){
   const rows=Object.values(calcStats(gameList)).map(s=>({...s,pkt:s.s*3,diff:s.bf-s.bg})).filter(r=>r.sp>0);
   rows.sort((a,b)=>b.pkt-a.pkt||b.diff-a.diff||b.bf-a.bf);
   if(!rows.length)return '<div class="empty" style="padding:1rem">Keine Spiele.</div>';
-  return`<table><thead><tr><th style="width:36px">#</th><th>Spieler</th><th style="width:30px">Sp</th><th style="width:28px">S</th><th style="width:28px">N</th><th style="width:34px">B+</th><th style="width:34px">B-</th><th style="width:42px">Diff</th><th style="width:36px">Pkt</th></tr></thead><tbody>${rows.map((r,i)=>{
+  return`<table><thead><tr><th style="width:52px">#</th><th>Spieler</th><th style="width:30px">Sp</th><th style="width:28px">S</th><th style="width:28px">N</th><th style="width:34px">B+</th><th style="width:34px">B-</th><th style="width:42px">Diff</th><th style="width:36px">Pkt</th></tr></thead><tbody>${rows.map((r,i)=>{
     const pos=i===0?'<span class="pos-badge gold">1.</span>':i===1?'<span class="pos-badge silver">2.</span>':i===2?'<span class="pos-badge bronze">3.</span>':`<span class="pos-badge">${i+1}.</span>`;
     const diff=(r.diff>0?'+':'')+r.diff,dc=r.diff>0?'#1a7a4a':r.diff<0?'#c0392b':'#888';
     return`<tr><td>${pos}</td><td><strong>${r.name}</strong></td><td>${r.sp}</td><td>${r.s}</td><td>${r.n}</td><td>${r.bf}</td><td>${r.bg}</td><td style="color:${dc}">${diff}</td><td class="pts">${r.pkt}</td></tr>`;
